@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href ="../../../dist/app.css" rel='stylesheet'> 
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <title>piskel app</title>
+</head>
+<body>
+    <main class="wrapper">
+        <div class="tools-wrapper">
+            <ul class="tools list">
+                <li class="list__item tool pen active-tool"><img width="32" src="./src/components/tools/pen/img/pen.svg" alt="pen"></li>
+                <li class="list__item tool"></li>
+                <li class="list__item tool paint-bucket"><img width="32" src="./src/components/tools/color-bucket/img/bucket.svg" alt="colorbucket"></li>
+                <li class="list__item tool eraser"><img width="32" src="./src/components/tools/eraser/img/eraser.svg" alt="eraser"></li>
+            </ul>
+        </div>
+        
+        <div class="frames-wrapper">
+            <ul class="frames">
+                <li class="frames__preview">
+                        <div class="frame-wrap">
+                            <canvas class="frame current-frame"></canvas>
+                            <div class="canvas-icon copy-icon"></div>
+                            <div class="canvas-icon delete-icon"></div>
+                        </div>
+                </li>
+                <li class="frames__add-frame-button">
+                    <div class="plus-icon">
+
+                    </div>
+                    <div class="frame-button__text">
+                        Add new button
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="canvas-wrapper">
+            <canvas class="main-canvas"></canvas>
+        </div>
+
+        <div class="anim-window-wrap">
+            <div class="anim-preview-canvas-wrap">
+                <canvas class="anim-preview-canvas"></canvas>
+            </div>
+            
+            <ul class="fps-buttons">
+                <li class="fps-button">2 fps</li>
+                <li class="fps-button">4 fps</li>
+                <li class="fps-button">8 fps</li>
+            </ul>
+            
+            <ul class="canvas-size-button">
+                <li class="canvas-size-button__item">512px</li>
+                <li class="canvas-size-button__item">256px</li>
+                <li class="canvas-size-button__item">128px</li>
+            </ul>
+
+            <ul class="menu menu-controls__control color-menu">
+                <li class="menu__item menu-controls__control-item">
+                    <div class="shape shape-current-color current-color" style="background-color: #0B6623;">
+
+                    </div>
+                    <div class="item-text current-color">Current color</div>
+                    <input class="color-picker current-color" type="color" value="#0B6623">
+                </li>    
+                <li class="menu__item menu-controls__control-item prev-color">
+                    <div class="shape shape-prev-color" style="background-color: #ffffff;">
+
+                    </div>
+                    <div class="item-text">Prev color</div>
+                </li>    
+            </ul>
+        </div>
+    </main>
+    <script src ='../../../dist/app.js'></script>
+</body>
+</html>

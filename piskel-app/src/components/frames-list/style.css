@@ -1,0 +1,52 @@
+.frames-wrapper {
+    margin-top: 45px;
+    width: 170px;
+    height: 600px;
+    overflow-y: auto;
+}
+.frame-button__text {
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.frame-wrap {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin-bottom: 10px;
+}
+
+.frame {
+    width: 150px;
+    height: 150px;
+    border: 1px solid black;
+    margin-bottom: 10px;
+}
+
+.copy-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-image: url('../frames-list/img/copy.svg');
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.delete-icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url('../frames-list/img/cancel.svg');
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.focus {
+    display: block;
+}
+
+.unfocus {
+    display: none;
+}

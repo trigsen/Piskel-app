@@ -1,0 +1,17 @@
+.anim-window-wrap {
+    display: flex;
+    margin-right: 25px;
+    margin-top: 45px;
+    flex-direction: column;
+}
+
+.anim-preview-canvas {
+    width: 300px;
+    height: 200px;
+    border: 1px solid black;
+}
+
+.fps-buttons {
+    display: flex;
+    justify-content: space-between;
+}
