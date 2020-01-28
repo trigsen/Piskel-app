@@ -19,10 +19,6 @@ module.exports = {
             ]
         },
         {
-            test: /\.(png|jpg|svg)/,
-            use: 'url-loader'
-        },
-        {
             test: /\.js$/,
             loader: 'babel-loader',
             exclude: '/node_modules/'
@@ -30,9 +26,7 @@ module.exports = {
         {
             test: /\.(png|jpg|gif|svg)$/,
             use: [
-              {
-                loader: 'file-loader',
-              },
+              'file-loader', 
             ],
         },
     ]

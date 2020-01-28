@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test": "jest",
     "dev": "webpack-dev-server --open --mode development",
     "build": "webpack --mode production",
     "lint": "eslint src/script/weather.js src/script/main.js src/script/geolocation.js src/script/map.js src/script/picture.js src/script/coordinate.js src/script/timer.js",
@@ -24,6 +25,7 @@
     "eslint-plugin-react": "^7.17.0",
     "file-loader": "^5.0.2",
     "html-loader": "^0.5.5",
+    "jest": "^25.1.0",
     "mini-css-extract-plugin": "^0.8.0",
     "path": "^0.12.7",
     "style-loader": "^1.0.1",
