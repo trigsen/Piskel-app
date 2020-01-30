@@ -4,7 +4,8 @@ import ColorChangerPanel from './components/canvas-color-picker/canvas-color-pic
 import ColorBucket from './components/tools/color-bucket/color-bucket';
 import Frames from './components/frames-list/frames';
 import Preview from './screens/preview/preview';
-import strokeLine from './components/tools/stroke-line/stroke-line';
+import StrokeLine from './components/tools/stroke-line/stroke-line';
+import Circle from './components/tools/circle/circle';
 
 export const startApp = function startApp() {
     let canvas = document.querySelector('.main-canvas');
@@ -44,7 +45,19 @@ export const startApp = function startApp() {
     document.querySelector('.stroke-line').addEventListener('click', (event) => {
         deleteActiveTool();
         addActiveTool(event.target);
-        strokeLine.drawStrokeLine(context, canvas, color, event.target, canvasEvents);
+        StrokeLine.drawStrokeLine(context, canvas, color, event.target, canvasEvents);
+    });
+    
+    document.querySelector('.circle').addEventListener('click', (event) => {
+        deleteActiveTool();
+        addActiveTool(event.target);
+        Circle.drawCircle(context, canvas, color, event.target, canvasEvents, false);
+    });
+
+    document.querySelector('.filled-circle').addEventListener('click', (event) => {
+        deleteActiveTool();
+        addActiveTool(event.target);
+        Circle.drawCircle(context, canvas, color, event.target, canvasEvents, true);
     });
 
     document.querySelector('.eraser').addEventListener('click', (event) => {
