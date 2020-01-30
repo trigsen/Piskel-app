@@ -32,7 +32,7 @@ export const startApp = function startApp() {
 
     document.querySelector('.canvas-size-button').addEventListener('click', (event) => {
         if (event.target.classList.contains('canvas-size-button__item')) {
-            changeCanvasSize(event.target, canvas);
+            changeCanvasSize(event.target, canvas, context);
         }
     });
 
