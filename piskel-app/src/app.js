@@ -4,10 +4,12 @@ import ColorChangerPanel from './components/canvas-color-picker/canvas-color-pic
 import ColorBucket from './components/tools/color-bucket/color-bucket';
 import Frames from './components/frames-list/frames';
 import Preview from './screens/preview/preview';
+import strokeLine from './components/tools/stroke-line/stroke-line';
 
 export const startApp = function startApp() {
     let canvas = document.querySelector('.main-canvas');
     let context = canvas.getContext('2d');
+    let canvasEvents = {};
     const color = document.querySelector('.color-picker');
     const framesArray = [];
     framesArray.push(document.querySelector('.frame'));
@@ -36,13 +38,19 @@ export const startApp = function startApp() {
     document.querySelector('.pen').addEventListener('click', (event) => {
         deleteActiveTool();
         addActiveTool(event.target);
-        Pen.draw(context, canvas, color, event.target);
+        Pen.draw(context, canvas, color, event.target, canvasEvents);
+    });
+ 
+    document.querySelector('.stroke-line').addEventListener('click', (event) => {
+        deleteActiveTool();
+        addActiveTool(event.target);
+        strokeLine.drawStrokeLine(context, canvas, color, event.target, canvasEvents);
     });
 
     document.querySelector('.eraser').addEventListener('click', (event) => {
         deleteActiveTool();
         addActiveTool(event.target);
-        Pen.draw(context, canvas, eraserColor, event.target);
+        Pen.draw(context, canvas, eraserColor, event.target, canvasEvents);
     });
 
     document.querySelector('.color-picker').addEventListener('input', (event) => {
@@ -56,7 +64,7 @@ export const startApp = function startApp() {
     document.querySelector('.paint-bucket').addEventListener('click', (event) => {
         deleteActiveTool();
         addActiveTool(event.target);
-        ColorBucket.flood(context, canvas, color, event.target);
+        ColorBucket.flood(context, canvas, color, event.target, canvasEvents);
     });
 
     document.querySelector('.frame-button__text').addEventListener('click', () => {
