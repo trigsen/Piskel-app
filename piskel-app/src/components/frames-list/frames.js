@@ -44,13 +44,18 @@ export default class Frames {
     }
 
     static chooseFrame(mainCanvas, context, target) {
+        const sizeValue = document.querySelector('.canvas-size-value');
+        const sizeRange = document.querySelector('.canvas-size-range');
         document.querySelector('.current-frame').classList.remove('current-frame');
         target.classList.add('current-frame');
         context.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
-        
+
         mainCanvas.width = target.width;
         mainCanvas.height = target.height;
-
+        
+        sizeRange.value = target.width;
+        sizeValue.innerHTML = target.width;
+        
         Frames.pasteImage(context, target);
     }
 

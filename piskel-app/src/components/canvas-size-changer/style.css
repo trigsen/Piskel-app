@@ -1,0 +1,15 @@
+.canvas-size-changer {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.canvas-size-changer__handler {
+    display: flex;
+    margin-top: 15px;
+}
+
+.canvas-size-value {
+    margin-left: 20px;
+}

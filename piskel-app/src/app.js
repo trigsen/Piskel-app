@@ -1,26 +1,30 @@
 import Pen from './components/tools/pen/pen'
-import {changeCanvasSize} from './components/canvas-size-buttons/canvas-size-buttons'
+import { changeCanvasSize } from './components/canvas-size-changer/canvas-size-changer'
 import ColorChangerPanel from './components/canvas-color-picker/canvas-color-picker';
 import ColorBucket from './components/tools/color-bucket/color-bucket';
 import Frames from './components/frames-list/frames';
 import Preview from './screens/preview/preview';
 import StrokeLine from './components/tools/stroke-line/stroke-line';
 import Circle from './components/tools/circle/circle';
+import Rectangle from './components/tools/rectangle/rectangle';
 
 export const startApp = function startApp() {
     let canvas = document.querySelector('.main-canvas');
     let context = canvas.getContext('2d');
     let canvasEvents = {};
+    const firstFrame = document.querySelector('.current-frame');
     const color = document.querySelector('.color-picker');
     const framesArray = [];
     framesArray.push(document.querySelector('.frame'));
+    let animation = Preview.displayAnimation(framesArray);
     context.clearRect(0, 0, 700, 600);
     const eraserColor = {
         value: '#FFFFFF'
     };
     canvas.width = 512;
     canvas.height = 512;
-    Preview.displayAnimation(framesArray);
+    firstFrame.width = 512;
+    firstFrame.height = 512;
     
     function deleteActiveTool() {
         document.querySelector('.active-tool').classList.remove('active-tool');
@@ -30,11 +34,20 @@ export const startApp = function startApp() {
         target.classList.add('active-tool');
     }
 
-    document.querySelector('.canvas-size-button').addEventListener('click', (event) => {
-        if (event.target.classList.contains('canvas-size-button__item')) {
-            changeCanvasSize(event.target, canvas, context);
-        }
+    document.querySelector('.fps-range').addEventListener('input', (event) => {
+        const fpsValue = document.querySelector('.fps-value');
+        fpsValue.innerHTML = event.target.valueAsNumber;
+        clearInterval(animation);
+        animation = Preview.displayAnimation(framesArray);
     });
+
+    document.querySelector('.canvas-size-range').addEventListener('input', (event) => {
+        const canvasSizeValue = document.querySelector('.canvas-size-value');
+        canvasSizeValue.innerHTML = event.target.valueAsNumber;
+        changeCanvasSize(event.target.valueAsNumber, canvas, context);
+        Frames.drawOnFrame(canvas, context);
+    });
+
 
     document.querySelector('.pen').addEventListener('click', (event) => {
         deleteActiveTool();
@@ -52,6 +65,18 @@ export const startApp = function startApp() {
         deleteActiveTool();
         addActiveTool(event.target);
         Circle.drawCircle(context, canvas, color, event.target, canvasEvents, false);
+    });
+
+    document.querySelector('.rectangle').addEventListener('click', (event) => {
+        deleteActiveTool();
+        addActiveTool(event.target);
+        Rectangle.drawRectangle(context, canvas, color, event.target, canvasEvents, false);
+    });
+
+    document.querySelector('.filled-rectangle').addEventListener('click', (event) => {
+        deleteActiveTool();
+        addActiveTool(event.target);
+        Rectangle.drawRectangle(context, canvas, color, event.target, canvasEvents, true);
     });
 
     document.querySelector('.filled-circle').addEventListener('click', (event) => {

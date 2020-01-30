@@ -1,9 +1,0 @@
-.canvas-size-button {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-}
-
-.canvas-size-button__item {
-    cursor: pointer;
-}

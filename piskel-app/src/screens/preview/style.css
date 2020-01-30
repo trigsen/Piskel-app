@@ -11,7 +11,18 @@
     border: 1px solid black;
 }
 
-.fps-buttons {
+.fps-changer {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.fps-changer__handler {
+    display: flex;
+    margin-top: 15px;
+}
+
+.fps-value {
+    margin-left: 20px;
 }

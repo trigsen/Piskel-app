@@ -18,6 +18,8 @@
                 <li class="list__item tool eraser"><img width="32" src="./src/components/tools/eraser/img/eraser.svg" alt="eraser"></li>
                 <li class="list__item tool circle"><img width="32" src="./src/components/tools/circle/img/oval.svg" alt="circle"></li>
                 <li class="list__item tool filled-circle"><img width="32" src="./src/components/tools/circle/img/filled-oval.svg" alt="filled circle"></li>
+                <li class="list__item tool rectangle"><img width="32" src="./src/components/tools/rectangle/img/rectangle.svg" alt="rectangle"></li>
+                <li class="list__item tool filled-rectangle"><img width="32" src="./src/components/tools/rectangle/img/filled-rectangle.svg" alt="filled rectangle"></li>
             </ul>
         </div>
         
@@ -35,7 +37,7 @@
 
                     </div>
                     <div class="frame-button__text">
-                        Add new button
+                        Create new frame
                     </div>
                 </li>
             </ul>
@@ -50,16 +52,20 @@
                 <canvas class="anim-preview-canvas"></canvas>
             </div>
             
-            <ul class="fps-buttons">
-                <li class="fps-button">2 fps</li>
-                <li class="fps-button">4 fps</li>
-                <li class="fps-button">8 fps</li>
+            <ul class="fps-changer">
+                <li>Frames per second:</li>
+                <li class="fps-changer__handler">
+                    <input class="fps-range" type="range" min="2" max="24" value="1">
+                    <div class="fps-value">2</div>
+                </li>
             </ul>
             
-            <ul class="canvas-size-button">
-                <li class="canvas-size-button__item">512px</li>
-                <li class="canvas-size-button__item">256px</li>
-                <li class="canvas-size-button__item">128px</li>
+            <ul class="canvas-size-changer">
+                <li>Canvas size:</li>
+                <li class="canvas-size-changer__handler">
+                    <input class="canvas-size-range" type="range" min="32" max="512" value="512">
+                    <div class="canvas-size-value">512</div>
+                </li>
             </ul>
 
             <ul class="menu menu-controls__control color-menu">
@@ -74,7 +80,7 @@
                     <div class="shape shape-prev-color" style="background-color: #ffffff;">
 
                     </div>
-                    <div class="item-text">Prev color</div>
+                    <div class="item-text">Previous color</div>
                 </li>    
             </ul>
         </div>

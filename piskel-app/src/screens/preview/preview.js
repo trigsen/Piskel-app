@@ -3,13 +3,13 @@ export default class Preview {
 
     }
 
-    static displayAnimation(framesArray) {
+    static displayAnimation(framesArray, fps) {
         const animationLayer = document.querySelector('.anim-preview-canvas');
         const animationContext = animationLayer.getContext('2d');
 
-        let fpsCount = 2;
         let item = 0;
-        setInterval(() => {
+        let fpsValue = document.querySelector('.fps-range').valueAsNumber;
+        return setInterval(() => {
             if (item < framesArray.length) {
                 const frame = framesArray[item];
                 const frameContext = frame.getContext('2d');
@@ -20,11 +20,11 @@ export default class Preview {
                 animationLayer.height = frame.height;
 
                 animationContext.putImageData(frameImage, 0, 0);
-
+                console.log(fpsValue);
                 item = item + 1;
             } else {
                 item = 0;
             }
-        }, 1000 / fpsCount);
+        }, 1000 / fpsValue);
     }
 }
