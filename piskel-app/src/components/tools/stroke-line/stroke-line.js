@@ -1,6 +1,8 @@
 import Frames from "../../frames-list/frames";
-
-export default class strokeLine {
+import { getCanvasCoordinates } from "../utilities/get-canvas-coordinates"
+import { restoreSnapshot } from "../utilities/restore-snapshot"
+import { takeSnapshot } from "../utilities/take-snapshot"
+export default class StrokeLine {
     constructor() {
 
     }
@@ -9,23 +11,6 @@ export default class strokeLine {
       let isDrawing = false;
       let snapshot;
       let dragStartLocation;
-
-      function getCanvasCoordinates(event) {
-        const canvasHTMLWidth = document.querySelector('.main-canvas').offsetWidth;
-        const canvasHTMLHeight = document.querySelector('.main-canvas').offsetHeight;
-        const x = event.offsetX / (canvasHTMLWidth / currentCanvas.width),
-            y = event.offsetY / (canvasHTMLHeight / currentCanvas.height);
-    
-        return {x: x, y: y};
-    }
-
-      function takeSnapshot() {
-        snapshot = currentContext.getImageData(0, 0, currentCanvas.width, currentCanvas.height);
-    }
-    
-      function restoreSnapshot() {
-        currentContext.putImageData(snapshot, 0, 0);
-     }
 
      function drawLine(position) {
         currentContext.beginPath();
@@ -39,8 +24,8 @@ export default class strokeLine {
         if (!isDrawing) {
           return;
         }
-        restoreSnapshot();
-        const position = getCanvasCoordinates(event);
+        restoreSnapshot(currentContext, snapshot);
+        const position = getCanvasCoordinates(event, currentCanvas);
         drawLine(position);
         Frames.drawOnFrame(currentCanvas, currentContext);
     }
@@ -51,14 +36,14 @@ export default class strokeLine {
       }
       
       isDrawing = true;
-      dragStartLocation = getCanvasCoordinates(event);
-      takeSnapshot();
+      dragStartLocation = getCanvasCoordinates(event, currentCanvas);
+      snapshot = takeSnapshot(currentContext, currentCanvas);
     }
 
     const mouseUp = () => {
       isDrawing = false;
-      restoreSnapshot();
-      const position = getCanvasCoordinates(event);
+      restoreSnapshot(currentContext, snapshot);
+      const position = getCanvasCoordinates(event, currentCanvas);
       drawLine(position);
     }
 
