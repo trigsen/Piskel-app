@@ -7,6 +7,7 @@ import Preview from './screens/preview/preview';
 import StrokeLine from './components/tools/stroke-line/stroke-line';
 import Circle from './components/tools/circle/circle';
 import Rectangle from './components/tools/rectangle/rectangle';
+import Tint from './components/tools/tint/tint';
 
 export const startApp = function startApp() {
     let canvas = document.querySelector('.main-canvas');
@@ -53,6 +54,18 @@ export const startApp = function startApp() {
         deleteActiveTool();
         addActiveTool(event.target);
         Pen.draw(context, canvas, color, event.target, canvasEvents);
+    });
+
+    document.querySelector('.lighten').addEventListener('click', (event) => {
+        deleteActiveTool();
+        addActiveTool(event.target);
+        Tint.draw(context, canvas, event.target, canvasEvents, true);
+    });
+
+    document.querySelector('.darken').addEventListener('click', (event) => {
+        deleteActiveTool();
+        addActiveTool(event.target);
+        Tint.draw(context, canvas, event.target, canvasEvents, false);
     });
  
     document.querySelector('.stroke-line').addEventListener('click', (event) => {
