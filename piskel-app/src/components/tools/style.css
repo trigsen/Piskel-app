@@ -10,3 +10,7 @@
     flex-direction: column;
     cursor: pointer;
 }
+
+.active-tool {
+    opacity: 0.5;
+}

@@ -5,7 +5,7 @@
    left: 50%;
    margin-right: -50%;
    transform: translate(-50%, -50%);
-   background-color: firebrick;
+   background-color: #F4F4F4;
    display: none;
 }
 
@@ -50,15 +50,17 @@
     right: 5%;
     font-size: 20px;
     cursor: pointer;
+    transition: all 0.15s ease-in-out;
 }
 
 .hotkeys-panel__exit:hover {
-    color: grey;
-    transition: all 0.15s ease-in-out;
+    color: #FFD700;
 }
 
 .hotkeys-panel__header {
     visibility: hidden;
+    text-align: center;
+    margin-top: 10px;
 }
 
 .hotkeys-panel-trigger__img {
@@ -66,3 +68,19 @@
     margin-top: 50px;
     cursor: pointer;
 }
+
+.hotkeys-panel__button {
+    background-color: transparent;
+    border: 3px solid #A0A0A0;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 12px;
+    color: #303030;
+    transition: border 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.hotkeys-panel__button:hover {
+    border: 3px solid #FFD700;  
+}
+

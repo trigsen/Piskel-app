@@ -7,14 +7,14 @@
     color: black;
 }
 
+
+
 .wrapper {
-    width: 1400px;
+    min-width: 1400px;
     height: 100vh;
     display: flex;
     justify-content: space-between;
 }
-
-/*canvas*/
 
 .canvas-wrapper {
     flex-grow: 1;
@@ -32,6 +32,13 @@
     border:1px solid #ccc
 }
 
-/*/canvas*/
+.canvas-information {
+    margin-top: 15px;
+    font-size: 12px;
+    color: #FFD700;
+}
 
-
+.canvas-information__size,
+ .canvas-information__cursor-position {
+    color: #746200;
+}
