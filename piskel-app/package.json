@@ -7,8 +7,8 @@
     "test": "jest",
     "dev": "webpack-dev-server --open --mode development",
     "build": "webpack --mode production",
-    "lint": "eslint src/script/weather.js src/script/main.js src/script/geolocation.js src/script/map.js src/script/picture.js src/script/coordinate.js src/script/timer.js",
-    "fixlint": "eslint src/script/weather.js src/script/main.js src/script/geolocation.js src/script/map.js src/script/picture.js src/script/coordinate.js src/script/timer.js --fix"
+    "lint": "eslint src",
+    "fixlint": "eslint src --fix"
   },
   "author": "",
   "license": "ISC",
