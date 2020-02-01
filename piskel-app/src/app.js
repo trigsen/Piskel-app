@@ -8,6 +8,8 @@ import StrokeLine from './components/tools/stroke-line/stroke-line';
 import Circle from './components/tools/circle/circle';
 import Rectangle from './components/tools/rectangle/rectangle';
 import Tint from './components/tools/tint/tint';
+import { getCanvasCoordinates } from "./components/tools/utilities/get-canvas-coordinates"
+import ModalPanel from './components/modal-panel/modal-panel';
 
 export const startApp = function startApp() {
     let canvas = document.querySelector('.main-canvas');
@@ -26,7 +28,107 @@ export const startApp = function startApp() {
     canvas.height = 512;
     firstFrame.width = 512;
     firstFrame.height = 512;
-    
+
+    let hotKeys = {
+        pen: 'p',
+        strokeLine: 's',
+        paintBucket: 'b',
+        eraser: 'e',
+        circle: 'c',
+        filledCircle: 'v',
+        rectangle: 'r',
+        filledRectangle: 't',
+        lighten: 'l',
+        darken: 'd',
+    }
+  
+    function runEventFromHotKey(property) {
+        switch(property) {
+            case 'pen':
+                let target = document.querySelector('.pen');
+                deleteActiveTool();
+                addActiveTool(target);
+                Pen.draw(context, canvas, color, target, canvasEvents);
+            break;
+            case 'strokeLine':
+                target = document.querySelector('.stroke-line');
+                deleteActiveTool();
+                addActiveTool(target);
+                StrokeLine.drawStrokeLine(context, canvas, color, target, canvasEvents);
+            break;
+            case 'paintBucket':
+                target = document.querySelector('.paint-bucket');
+                deleteActiveTool();
+                addActiveTool(target);
+                ColorBucket.flood(context, canvas, color, target, canvasEvents);
+            break;
+            case 'eraser':
+                target = document.querySelector('.eraser');
+                deleteActiveTool();
+                addActiveTool(target);
+                Pen.draw(context, canvas, eraserColor, target, canvasEvents);
+            break;
+            case 'circle':
+                target = document.querySelector('.circle');
+                deleteActiveTool();
+                addActiveTool(target);
+                Circle.drawCircle(context, canvas, color, target, canvasEvents, false);
+            break;
+            case 'filledCircle':
+                target = document.querySelector('.filled-circle');
+                deleteActiveTool();
+                addActiveTool(target);
+                Circle.drawCircle(context, canvas, color, target, canvasEvents, true);
+            break;
+            case 'rectangle':
+                target = document.querySelector('.rectangle');
+                deleteActiveTool();
+                addActiveTool(target);
+                Rectangle.drawRectangle(context, canvas, color, target, canvasEvents, false);
+            break;
+            case 'filledRectangle':
+                target = document.querySelector('.filled-rectangle');
+                deleteActiveTool();
+                addActiveTool(target);
+                Rectangle.drawRectangle(context, canvas, color, target, canvasEvents, true);
+            break;
+            case 'lighten':
+                target = document.querySelector('.lighten');
+                deleteActiveTool();
+                addActiveTool(target);
+                Tint.draw(context, canvas, target, canvasEvents, true);
+            break;
+            case 'darken':
+                target = document.querySelector('.darken');
+                deleteActiveTool();
+                addActiveTool(target);
+                Tint.draw(context, canvas, target, canvasEvents, false);
+            break;
+        }
+    }
+
+    document.addEventListener('keypress', (event) => {
+        for (let key in hotKeys) {
+            if (event.key === hotKeys[key]) {
+                runEventFromHotKey(key);
+            }
+        }
+    });
+
+    document.querySelector('.hotkeys-panel-trigger').addEventListener('click', () => {
+        const hotKeysPanel = document.querySelector('.hotkeys-panel');
+        hotKeysPanel.style.display = 'block';
+    });
+
+    document.querySelector('.hotkeys-panel__exit').addEventListener('click', () => {
+        const hotKeysPanel = document.querySelector('.hotkeys-panel');
+        hotKeysPanel.style.display = 'none';
+    });
+
+    document.querySelector('.hotkeys-panel__button').addEventListener('click', () => {
+        ModalPanel.changeHotkeys(hotKeys);
+    });
+
     function deleteActiveTool() {
         document.querySelector('.active-tool').classList.remove('active-tool');
     }
@@ -41,6 +143,18 @@ export const startApp = function startApp() {
         clearInterval(animation);
         animation = Preview.displayAnimation(framesArray);
     });
+
+    canvas.addEventListener('mousemove', (event) => {
+        const cursorInfromation = document.querySelector('.canvas-information__cursor-position');
+        cursorInfromation.style.display = 'block';
+        const position = getCanvasCoordinates(event, canvas);
+        cursorInfromation.innerHTML = `${Math.round(position.x)}:${Math.round(position.y)}`
+    });
+
+    canvas.addEventListener('mouseout', (event) => {
+        const cursorInfromation = document.querySelector('.canvas-information__cursor-position');
+        cursorInfromation.style.display = 'none';
+    })
 
     document.querySelector('.canvas-size-range').addEventListener('input', (event) => {
         const canvasSizeValue = document.querySelector('.canvas-size-value');

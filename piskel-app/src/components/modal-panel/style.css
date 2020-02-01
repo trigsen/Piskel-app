@@ -1,0 +1,68 @@
+.hotkeys-panel {
+   width: 600px;
+   position: fixed;
+   top: 50%;
+   left: 50%;
+   margin-right: -50%;
+   transform: translate(-50%, -50%);
+   background-color: firebrick;
+   display: none;
+}
+
+.hotkeys-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 50px;
+}
+
+.hotkeys-list__item {
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+}
+
+.hotkeys-list__item:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.hotkey__text {
+    display: flex;
+    font-size: 13px;
+    align-items: center;
+}
+
+.hotkey__input {
+    width: 50px;
+}
+
+.hotkey__image {
+    margin-right: 10px;
+}
+
+.hotkeys-panel__button {
+    position: relative;
+    left: 60%; 
+    margin-bottom: 10px;
+}
+
+.hotkeys-panel__exit {
+    position: absolute;
+    top: 0;
+    right: 5%;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.hotkeys-panel__exit:hover {
+    color: grey;
+    transition: all 0.15s ease-in-out;
+}
+
+.hotkeys-panel__header {
+    visibility: hidden;
+}
+
+.hotkeys-panel-trigger__img {
+    width: 60px;
+    margin-top: 50px;
+    cursor: pointer;
+}
