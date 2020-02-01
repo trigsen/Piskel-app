@@ -1,54 +1,54 @@
-import Frames from "../../frames-list/frames";
+import Frames from '../../frames-list/frames';
+import { getCanvasCoordinates } from '../utilities/get-canvas-coordinates';
 
 export default class Pen {
-  constructor() {
-    
-  }
-  
-  static draw(currentContext, currentCanvas, color, target) {
-      let isDrawing = false;
-      const canvasHTMLWidth = document.querySelector('.main-canvas').offsetWidth;
-      const canvasHTMLHeight = document.querySelector('.main-canvas').offsetHeight;
-      let xCoordinateScale;
-      let yCoordinateScale;
+  static draw(currentContext, currentCanvas, color, target, canvasEvents) {
+    let isDrawing = false;
 
-      function getCoodinateScale() {
-        xCoordinateScale = (canvasHTMLWidth / currentCanvas.width);
-        yCoordinateScale = (canvasHTMLHeight / currentCanvas.height);
-      }
-
-      currentCanvas.addEventListener('mousemove', (e) => {
+    const mouseMove = (event) => {
       if (!isDrawing) {
         return;
       }
-      getCoodinateScale();
+      const position = getCanvasCoordinates(event, currentCanvas);
 
-      currentContext.lineTo(e.offsetX / xCoordinateScale, e.offsetY / yCoordinateScale);
+      currentContext.lineTo(position.x, position.y);
       currentContext.stroke();
-
       Frames.drawOnFrame(currentCanvas, currentContext);
-  });
+    };
 
-    currentCanvas.addEventListener('mousedown', (e) => {
+    const mouseDown = (event) => {
       if (!target.classList.contains('active-tool')) {
-        return
+        return;
       }
-    
       isDrawing = true;
-      getCoodinateScale();
-      
+      const startPosition = getCanvasCoordinates(event, currentCanvas);
       currentContext.beginPath();
       currentContext.strokeStyle = color.value;
       currentContext.lineWidth = 1;
-      currentContext.moveTo(e.offsetX / xCoordinateScale, e.offsetY / yCoordinateScale);
-    });
+      currentContext.moveTo(startPosition.x, startPosition.y);
+    };
 
-    currentCanvas.addEventListener('mouseup', () => {
+    const mouseUp = () => {
       isDrawing = false;
-    });
+    };
 
-    currentCanvas.addEventListener('mouseout', () => {
+    const mouseOut = () => {
       isDrawing = false;
-    });
+    };
+
+    currentCanvas.removeEventListener('mousedown', canvasEvents.mousedown, false);
+    currentCanvas.removeEventListener('mouseup', canvasEvents.mouseup, false);
+    currentCanvas.removeEventListener('mouseout', canvasEvents.mouseout, false);
+    currentCanvas.removeEventListener('mousemove', canvasEvents.mousemove, false);
+
+    currentCanvas.addEventListener('mousemove', mouseMove);
+    currentCanvas.addEventListener('mousedown', mouseDown);
+    currentCanvas.addEventListener('mouseup', mouseUp);
+    currentCanvas.addEventListener('mouseout', mouseOut);
+
+    canvasEvents.mousemove = mouseMove;
+    canvasEvents.mouseup = mouseUp;
+    canvasEvents.mousedown = mouseDown;
+    canvasEvents.mouseout = mouseOut;
   }
 }

@@ -1,16 +1,15 @@
 export function shadeColor(color, percent) {
-    
-    color.r = parseInt(color.r * (100 + percent) / 100);
-    color.g = parseInt(color.g * (100 + percent) / 100);
-    color.b = parseInt(color.b * (100 + percent) / 100);
+  let r = parseInt((color.r * (100 + percent)) / 100, 10);
+  let g = parseInt((color.g * (100 + percent)) / 100, 10);
+  let b = parseInt((color.b * (100 + percent)) / 100, 10);
 
-    color.r = (color.r< 255) ? color.r : 255;  
-    color.g = ( color.g < 255) ? color.g :255;  
-    color.b = (color.b < 255) ? color.b :255;  
+  r = (r < 255) ? r : 255;
+  g = (g < 255) ? g : 255;
+  b = (b < 255) ? b : 255;
 
-    const RR = ((color.r.toString(16).length==1)?"0"+color.r.toString(16):color.r.toString(16));
-    const GG = ((color.g.toString(16).length==1)?"0"+color.g.toString(16):color.g.toString(16));
-    const BB = ((color.b.toString(16).length==1)?"0"+color.b.toString(16):color.b.toString(16));
+  const RR = ((r.toString(16).length === 1) ? `0${r.toString(16)}` : r.toString(16));
+  const GG = ((g.toString(16).length === 1) ? `0${g.toString(16)}` : g.toString(16));
+  const BB = ((b.toString(16).length === 1) ? `0${b.toString(16)}` : b.toString(16));
 
-    return "#"+RR+GG+BB;
+  return `#${RR}${GG}${BB}`;
 }

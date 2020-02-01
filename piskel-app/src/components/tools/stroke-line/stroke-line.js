@@ -1,55 +1,52 @@
-import Frames from "../../frames-list/frames";
-import { getCanvasCoordinates } from "../utilities/get-canvas-coordinates"
-import { restoreSnapshot } from "../utilities/restore-snapshot"
-import { takeSnapshot } from "../utilities/take-snapshot"
+import Frames from '../../frames-list/frames';
+import { getCanvasCoordinates } from '../utilities/get-canvas-coordinates';
+import { restoreSnapshot } from '../utilities/restore-snapshot';
+import { takeSnapshot } from '../utilities/take-snapshot';
+
 export default class StrokeLine {
-    constructor() {
+  static drawStrokeLine(currentContext, currentCanvas, color, target, canvasEvents) {
+    let isDrawing = false;
+    let snapshot;
+    let dragStartLocation;
 
+    function drawLine(position) {
+      currentContext.beginPath();
+      currentContext.strokeStyle = color.value;
+      currentContext.moveTo(dragStartLocation.x, dragStartLocation.y);
+      currentContext.lineTo(position.x, position.y);
+      currentContext.stroke();
     }
 
-    static drawStrokeLine(currentContext, currentCanvas, color, target, canvasEvents) {
-      let isDrawing = false;
-      let snapshot;
-      let dragStartLocation;
-
-     function drawLine(position) {
-        currentContext.beginPath();
-        currentContext.strokeStyle = color.value;
-        currentContext.moveTo(dragStartLocation.x, dragStartLocation.y);
-        currentContext.lineTo(position.x, position.y);
-        currentContext.stroke();
-    }
-    
     const mouseMove = (e) => {
-        if (!isDrawing) {
-          return;
-        }
-        restoreSnapshot(currentContext, snapshot);
-        const position = getCanvasCoordinates(event, currentCanvas);
-        drawLine(position);
-        Frames.drawOnFrame(currentCanvas, currentContext);
-    }
+      if (!isDrawing) {
+        return;
+      }
+      restoreSnapshot(currentContext, snapshot);
+      const position = getCanvasCoordinates(e, currentCanvas);
+      drawLine(position);
+      Frames.drawOnFrame(currentCanvas, currentContext);
+    };
 
     const mouseDown = (e) => {
       if (!target.classList.contains('active-tool')) {
-        return
+        return;
       }
-      
-      isDrawing = true;
-      dragStartLocation = getCanvasCoordinates(event, currentCanvas);
-      snapshot = takeSnapshot(currentContext, currentCanvas);
-    }
 
-    const mouseUp = () => {
+      isDrawing = true;
+      dragStartLocation = getCanvasCoordinates(e, currentCanvas);
+      snapshot = takeSnapshot(currentContext, currentCanvas);
+    };
+
+    const mouseUp = (e) => {
       isDrawing = false;
       restoreSnapshot(currentContext, snapshot);
-      const position = getCanvasCoordinates(event, currentCanvas);
+      const position = getCanvasCoordinates(e, currentCanvas);
       drawLine(position);
-    }
+    };
 
     const mouseOut = () => {
       isDrawing = false;
-    }
+    };
 
     currentCanvas.removeEventListener('mousedown', canvasEvents.mousedown, false);
     currentCanvas.removeEventListener('mouseup', canvasEvents.mouseup, false);
