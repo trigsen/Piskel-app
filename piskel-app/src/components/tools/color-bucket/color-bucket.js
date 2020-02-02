@@ -7,7 +7,8 @@ export default class ColorBucket {
       const stack = [[startX, startY]];
       const image = context.getImageData(0, 0, canvas.width, canvas.height);
       const imageData = image.data;
-      const initialPosition = Math.round((startY * canvas.width + startX) * 4);
+      const pixelCoef = 4;
+      const initialPosition = Math.round((startY * canvas.width + startX) * pixelCoef);
       const startColor = {
         r: imageData[initialPosition + 0],
         g: imageData[initialPosition + 1],
@@ -41,14 +42,14 @@ export default class ColorBucket {
         const newPosition = stack.pop();
         const x = Math.round(newPosition[0]);
         let y = Math.round(newPosition[1]);
-        let pixelPosition = (y * canvas.width + x) * 4;
+        let pixelPosition = (y * canvas.width + x) * pixelCoef;
 
         while (y-- >= 0 && isStartColor(pixelPosition, startColor, imageData)) {
-          pixelPosition -= canvas.width * 4;
+          pixelPosition -= canvas.width * pixelCoef;
         }
 
         y++;
-        pixelPosition += canvas.width * 4;
+        pixelPosition += canvas.width * pixelCoef;
         let reachLeft = false;
         let reachRight = false;
 
@@ -56,7 +57,7 @@ export default class ColorBucket {
           drawPixel(pixelPosition);
 
           if (x > 0) {
-            if (isStartColor(pixelPosition - 4, startColor, imageData)) {
+            if (isStartColor(pixelPosition - pixelCoef, startColor, imageData)) {
               if (!reachLeft) {
                 stack.push([x - 1, y]);
                 reachLeft = true;
@@ -67,7 +68,7 @@ export default class ColorBucket {
           }
 
           if (x < canvas.width - 1) {
-            if (isStartColor(pixelPosition + 4, startColor, imageData)) {
+            if (isStartColor(pixelPosition + pixelCoef, startColor, imageData)) {
               if (!reachRight) {
                 stack.push([x + 1, y]);
                 reachRight = true;
@@ -77,7 +78,7 @@ export default class ColorBucket {
             }
           }
 
-          pixelPosition += canvas.width * 4;
+          pixelPosition += canvas.width * pixelCoef;
         }
       }
 
