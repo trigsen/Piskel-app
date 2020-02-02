@@ -1,0 +1,35 @@
+.presentation {
+    padding: 100px 0;
+}
+
+.presentation__content {
+    justify-content: space-between;
+    color: white;
+    font-family: "Montserrat", sans-serif;
+}
+
+.presentation__screen {
+    width: 900px;
+}
+
+.presentation__header {
+    font-size: 54px;
+    margin-bottom: 20px;
+}
+
+.presentation__main-text {
+    font-size: 20px;
+    margin-right: 15px;
+    letter-spacing: 1px;
+    line-height: 40px;
+}
+
+.presentation__button-wrap {
+    margin-top: 70px;
+}
+
+.presentation__button {
+    padding: 15px 60px;
+    font-size: 20px;
+    cursor: pointer;
+}

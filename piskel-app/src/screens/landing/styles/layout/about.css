@@ -1,0 +1,10 @@
+.about {
+    padding: 70px 0;
+}
+
+.about__text {
+    font-family: "Montserrat", sans-serif;
+    color: white;
+    font-size: 24px;
+    text-align: center;
+}

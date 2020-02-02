@@ -1,0 +1,27 @@
+.examples {
+    padding: 70px 0;
+}
+.examples__content {
+    flex-direction: column;
+    align-items: center;
+}
+
+.examples__image-wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 70px;
+}
+
+.image-container {
+    margin-left: 50px;
+}
+
+.examples__image {
+    width: 200px;
+    height: 200px;
+    transition: transform 0.15s ease-in-out;
+}
+
+.image_hover:hover {
+    transform: scale(1.1);
+}
