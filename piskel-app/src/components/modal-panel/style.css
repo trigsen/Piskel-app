@@ -7,6 +7,7 @@
    transform: translate(-50%, -50%);
    background-color: #F4F4F4;
    display: none;
+   background-color: #1D1D1D;
 }
 
 .hotkeys-list {
@@ -38,10 +39,17 @@
     margin-right: 10px;
 }
 
+.hotkey__image img {
+    background: #dcdcdc;
+    border: 1px solid #dcdcdc;
+    border-radius: 5px;
+}
+
 .hotkeys-panel__button {
     position: relative;
     left: 60%; 
     margin-bottom: 10px;
+    color: #998965 !important;
 }
 
 .hotkeys-panel__exit {

@@ -10,6 +10,7 @@
     height: 200px;
     border: 1px solid black;
     image-rendering: pixelated;
+    background-color: white;
 }
 
 .fps-changer {

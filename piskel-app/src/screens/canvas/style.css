@@ -4,10 +4,8 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
-    color: black;
+    color: #998965;
 }
-
-
 
 .wrapper {
     min-width: 1400px;
