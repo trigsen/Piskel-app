@@ -29,6 +29,8 @@
 }
 
 .functionality__image {
+    width: 100%;
+    max-width: 200px;
     height: 200px;
     transition: transform 0.15s ease-in-out;
 }
@@ -47,4 +49,14 @@
 
 .hotkeys__item:not(:last-child) {
     margin-bottom: 13px;
+}
+
+@media (max-width: 1080px) {    
+    .functionality__image-wrapper {
+        flex-direction: column;
+    }
+
+    .image-content__text {
+        margin: 10px auto;
+    }
 }

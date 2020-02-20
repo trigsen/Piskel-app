@@ -22,3 +22,13 @@
 .footer__link_hover:hover {
     color: #aa11aa;
 }
+
+@media (max-width: 360px) {
+    .footer__content {
+        flex-direction: column;
+    }
+
+    .footer__text {
+        margin-top: 10px;
+    }
+}
