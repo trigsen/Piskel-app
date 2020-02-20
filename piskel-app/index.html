@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href ="./dist/app.css" rel='stylesheet'> 
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <title>piskel app</title>
+</head>
+<body>
+    <main class="wrapper">
+        <div class="tools-wrapper">
+            <ul class="tools list">
+                <li class="list__item tool pen active-tool"><img width="32" src="./src/components/tools/pen/img/pen.svg" alt="pen"></li>
+                <li class="list__item tool stroke-line"><img width="32" src="./src/components/tools/stroke-line/img/horizontal-line.svg" alt="stroke-line"></li>
+                <li class="list__item tool paint-bucket"><img width="32" src="./src/components/tools/color-bucket/img/bucket.svg" alt="colorbucket"></li>
+                <li class="list__item tool eraser"><img width="32" src="./src/components/tools/eraser/img/eraser.svg" alt="eraser"></li>
+                <li class="list__item tool circle"><img width="32" src="./src/components/tools/circle/img/oval.svg" alt="circle"></li>
+                <li class="list__item tool filled-circle"><img width="32" src="./src/components/tools/circle/img/filled-oval.svg" alt="filled circle"></li>
+                <li class="list__item tool rectangle"><img width="32" src="./src/components/tools/rectangle/img/rectangle.svg" alt="rectangle"></li>
+                <li class="list__item tool filled-rectangle"><img width="32" src="./src/components/tools/rectangle/img/filled-rectangle.svg" alt="filled rectangle"></li>
+                <li class="list__item tool lighten"><img width="32" src="./src/components/tools/tint/img/lighten.svg" alt="lighten"></li>
+                <li class="list__item tool darken"><img width="32" src="./src/components/tools/tint/img/darken.svg" alt="darken"></li>
+            </ul>
+
+            <div class="hotkeys-panel-trigger">
+                <img class="hotkeys-panel-trigger__img" src="./src/components/modal-panel/img/keyboard.svg" alt="keyboard">
+            </div>
+        </div>
+        
+        <div class="frames-wrapper">
+            <ul class="frames">
+                <li class="frames__preview">
+                        <div class="frame-wrap">
+                            <canvas class="frame current-frame"></canvas>
+                            <div class="canvas-icon copy-icon"></div>
+                            <div class="canvas-icon delete-icon"></div>
+                        </div>
+                </li>
+                <li class="frames__add-frame-button">
+                    <div class="frame-button__text">
+                        <button class="frame-button">Create frame</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="canvas-wrapper">
+            <canvas class="main-canvas"></canvas>
+        </div>
+
+        <div class="anim-window-wrap">
+            <div class="anim-preview-canvas-wrap">
+                <canvas class="anim-preview-canvas"></canvas>
+            </div>
+            
+            <ul class="fps-changer">
+                <li>Frames per second:</li>
+                <li class="fps-changer__handler">
+                    <input class="fps-range" type="range" min="2" max="24" value="1">
+                    <div class="fps-value">2</div>
+                </li>
+            </ul>
+            
+            <ul class="canvas-size-changer">
+                <li>Canvas size:</li>
+                <li class="canvas-size-changer__handler">
+                    <input class="canvas-size-range" type="range" min="32" max="512" value="512">
+                    <div class="canvas-size-value">512</div>
+                </li>
+            </ul>
+
+            <ul class="menu menu-controls__control color-menu">
+                <li class="menu__item menu-controls__control-item">
+                    <div class="shape shape-current-color current-color" style="background-color: #0B6623;">
+
+                    </div>
+                    <div class="item-text current-color"></div>
+                    <input class="color-picker current-color" type="color" value="#0B6623">
+                </li>    
+                <li class="menu__item menu-controls__control-item prev-color">
+                    <div class="shape shape-prev-color" style="background-color: #ffffff;">
+
+                    </div>
+                    <div class="item-text"></div>
+                </li>    
+            </ul>
+
+            <ul class="canvas-information">
+                <li class="canvas-information__size">
+                    512x512
+                </li>
+                <li class="canvas-information__cursor-position">
+
+                </li>
+            </ul>
+        </div>
+    </main>
+
+    <section class="hotkeys-panel modal-panel">
+        <div class="hotkeys-panel__header">text</div>
+        <ul class="hotkeys-list">
+            <li class="hotkeys-list__item hotkey">
+                <div class="hotkey__text">
+                    <div class="hotkey__image"><img width="32" src="./src/components/tools/pen/img/pen.svg" alt="pen"></div>
+                    Pen:
+                </div>
+                <input data-tool="pen" maxlength="1" type="text" class="hotkey__input">
+            </li>
+            <li class="hotkeys-list__item hotkey">
+                <div class="hotkey__text">
+                    <div class="hotkey__image"><img width="32" src="./src/components/tools/stroke-line/img/horizontal-line.svg" alt="stroke line"></div>
+                    Stroke line:
+                </div>
+                <input data-tool="strokeLine" maxlength="1" type="text" class="hotkey__input">
+            </li>
+            <li class="hotkeys-list__item hotkey">
+                <div class="hotkey__text">
+                    <div class="hotkey__image"><img width="32" src="./src/components/tools/color-bucket/img/bucket.svg" alt="paint-bucket"></div>
+                    Paint bucket:
+                </div>
+                <input data-tool="paintBucket" maxlength="1" type="text" class="hotkey__input">
+            </li>
+            <li class="hotkeys-list__item hotkey">
+                <div class="hotkey__text">
+                    <div class="hotkey__image"><img width="32" src="./src/components/tools/eraser/img/eraser.svg" alt="eraser"></div>
+                    Eraser: 
+                </div>
+                <input data-tool="eraser" maxlength="1" type="text" class="hotkey__input">
+            </li>
+            <li class="hotkeys-list__item hotkey">
+                <div class="hotkey__text">
+                    <div class="hotkey__image"><img width="32" src="./src/components/tools/circle/img/oval.svg" alt="circle"></div>
+                    Circle:
+                </div>
+                <input data-tool="circle" maxlength="1" type="text" class="hotkey__input">
+            </li>
+            <li class="hotkeys-list__item hotkey">
+                <div class="hotkey__text">
+                    <div class="hotkey__image"><img width="32" src="./src/components/tools/circle/img/filled-oval.svg" alt="filled-circle"></div>
+                    Filled circle:
+                </div>
+                <input data-tool="filledCircle" maxlength="1" type="text" class="hotkey__input">
+            </li>
+            <li class="hotkeys-list__item hotkey">
+                <div class="hotkey__text">
+                    <div class="hotkey__image"><img width="32" src="./src/components/tools/rectangle/img/rectangle.svg" alt="rectangle"></div>
+                    Rectangle:
+                </div>
+                <input data-tool="rectangle" maxlength="1" type="text" class="hotkey__input">
+            </li>
+            <li class="hotkeys-list__item hotkey">
+                <div class="hotkey__text">
+                    <div class="hotkey__image"><img width="32" src="./src/components/tools/rectangle/img/rectangle.svg" alt="filled-rectangle"></div>
+                    Filled rectangle:
+                </div>
+                <input data-tool="filledRectangle" maxlength="1" type="text" class="hotkey__input">
+            </li>
+            <li class="hotkeys-list__item hotkey">
+                <div class="hotkey__text">
+                    <div class="hotkey__image"><img width="32" src="./src/components/tools/tint/img/lighten.svg" alt="lighten tool"></div>
+                    Lighten:
+                </div>
+                <input data-tool="lighten" maxlength="1" type="text" class="hotkey__input">
+            </li>
+            <li class="hotkeys-list__item hotkey">
+                <div class="hotkey__text">
+                    <div class="hotkey__image"><img width="32" src="./src/components/tools/tint/img/darken.svg" alt="darken tool"></div>
+                    Darken:
+                </div>
+                <input data-tool="darken" maxlength="1" type="text" class="hotkey__input">
+            </li>
+
+        </ul>
+        <button class="hotkeys-panel__button">Change hotkeys</button>
+        <div class="hotkeys-panel__exit">X</div>
+    </section>
+    <script src ="./dist/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+.container {
+    margin: 0 auto;
+    max-width: 1300px;
+}
+
+.section-header {
+    font-size: 40px;
+    color: white;
+    font-family: "Montserrat", sans-serif;
+}

@@ -1,0 +1,62 @@
+.frames-wrapper {
+    margin-top: 45px;
+    width: 170px;
+    height: 600px;
+    overflow-y: auto;
+}
+.frame-button__text {
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.frame-wrap {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin-bottom: 10px;
+}
+
+.frame {
+    width: 150px;
+    height: 150px;
+    border: 1px solid #888888;
+    margin-bottom: 10px;
+    image-rendering: pixelated;
+    background-color: white;
+}
+
+.copy-icon {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-image: url('../frames-list/img/copy.svg');
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.delete-icon {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    background-image: url('../frames-list/img/cancel.svg');
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.frame-button {
+    background-color: transparent;
+    border: 3px solid #A0A0A0;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 12px;
+    color: #998965;
+    cursor: pointer;
+    transition: border 0.3s ease-in-out;
+}
+
+.frame-button:hover {
+    border: 3px solid #FFD700;
+    
+}
