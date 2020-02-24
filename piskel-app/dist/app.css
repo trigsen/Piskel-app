@@ -279,7 +279,7 @@ input[type=range] {
     position: absolute;
     top: 5px;
     right: 5px;
-    background-image: url(/distad17d20a524c558dea7600a239559145.svg);
+    background-image: url('./ad17d20a524c558dea7600a239559145.svg');
     width: 20px;
     height: 20px;
     cursor: pointer;
@@ -289,7 +289,7 @@ input[type=range] {
     position: absolute;
     top: 5px;
     left: 5px;
-    background-image: url(/distc209d85936b338b2f5d387c442aad55a.svg);
+    background-image: url("./c209d85936b338b2f5d387c442aad55a.svg");
     width: 20px;
     height: 20px;
     cursor: pointer;
